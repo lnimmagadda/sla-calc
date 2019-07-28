@@ -1,6 +1,6 @@
 node {
  	stage('SCM Checkout'){
- 	 git https://github.com/lnimmagadda/sla-calc
+ 	 git 'https://github.com/lnimmagadda/sla-calc'
  	}
  
 	stage('Docker build') {
