@@ -3,9 +3,6 @@ node {
  	 git 'https://github.com/lnimmagadda/sla-calc'
  	}
  
-	stage('Docker build') {
-		docker.build('jenkins-test')
-	}
 	
   
 }
