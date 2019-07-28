@@ -8,7 +8,7 @@ RUN mkdir  /root/.aws
 #COPY /target/credentials /root/.aws/credentials
 
 # copy the WAR bundle to tomcat
-COPY /target/sla-calculator-service.war /usr/local/tomcat/webapps/sla-calculator-service.war
+#COPY /target/sla-calculator-service.war /usr/local/tomcat/webapps/sla-calculator-service.war
 
 # command to run
 #CMD ["catalina.sh", "run"]
