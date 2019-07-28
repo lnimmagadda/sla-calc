@@ -1,11 +1,18 @@
-@Library("Utilities") _
-BuildAndDeploy {
-    sshKeyAttributeName = "key"
-    confFile = [dev : "dev-fq.conf", sandbox : "sbx-fq.conf", prod : "prd-us-fq.conf"]
-    securityGroups = [dev : "fuelquest_dev_allow_ssh,fuelquest_dev_tomcat" ,
-                      sandbox : "fuelquest_sbx_allow_ssh,fuelquest_sbx_tomcat",
-                      prod: "fuelquest_prd_allow_ssh,fuelquest_prd_tomcat"]
-    albTargetGroup = [dev : "fuelquest-dev-slacalc" ,
-                      sandbox : "fuelquest-sbx-slacalc",
-                      prod: "fuelquest-prd-slacalc"]
+node {
+   def mvn = tool (name: 'Maven3', type: 'maven') + '/bin/mvn'
+   stage('SCM Checkout'){
+    // Clone repo
+	git branch: 'master', 
+	credentialsId: 'github', 
+	url: 'https://github.com/lnimmagadda/sla-calc'
+   
+   }
+   
+	
+   stage('Mvn Package'){
+	   // Build using maven
+	   
+	   sh "${mvn} clean package "
+   }
+   
 }
