@@ -8,7 +8,7 @@ node {
    stage('Mvn Package'){
 	   // Build using maven
 	   
-	   mvn clean package
+	  bat "mvn clean verify"
    }
    
 }
