@@ -1,0 +1,23 @@
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match_phrase": {
+            "operation": {
+              "query": "probe-sample-event"
+            }
+          }
+        },
+        {
+          "range": {
+            "timestamp": {
+              "gte": "now-%1$sm"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "size":10000
+}

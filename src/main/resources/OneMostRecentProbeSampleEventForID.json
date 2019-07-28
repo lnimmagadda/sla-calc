@@ -1,0 +1,34 @@
+{
+  "size":1,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match_phrase": {
+            "operation": {
+              "query": "probe-sample-event"
+            }
+          }
+        }, {
+          "term": {
+            "siteId": "%1$s"
+          }
+        },
+        {
+          "range": {
+            "timestamp": {
+              "gte": "now-1d"
+            }
+          }
+        }
+      ]
+    }
+  }
+, "sort": [
+  {
+    "@timestamp": {
+      "order": "desc"
+    }
+  }
+]
+}

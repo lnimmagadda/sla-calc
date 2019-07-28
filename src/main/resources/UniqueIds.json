@@ -1,0 +1,31 @@
+{
+  "size": "0",
+  "aggs": {
+    "uniq_ids": {
+      "terms": {
+        "field": "siteId.keyword",
+        "size": 20000
+      }
+    }
+  }
+, "query": {
+    "bool": {
+      "must": [
+        {
+          "match_phrase": {
+            "operation": {
+              "query": "probe-sample-event"
+            }
+          }
+        },
+        {
+          "range": {
+            "timestamp": {
+              "gte": "now-1d"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "ParameterKey": "VPC",
+    "ParameterValue": "vpc-aa42abc3"
+  },
+  {
+    "ParameterKey": "SubnetA",
+    "ParameterValue": "subnet-7259500a"
+  },
+  {
+    "ParameterKey": "SubnetB",
+    "ParameterValue": "subnet-0d996e64"
+  },
+  {
+    "ParameterKey": "Image",
+    "ParameterValue": "633377509572.dkr.ecr.us-east-2.amazonaws.com/sla-calculator:latest"
+  },
+  {
+    "ParameterKey": "ServiceName",
+    "ParameterValue": "cf-sla-calculator"
+  },
+  {
+    "ParameterKey": "ContainerPort",
+    "ParameterValue": "8080"
+  },
+  {
+    "ParameterKey": "LoadBalancerPort",
+    "ParameterValue": "80"
+  },
+  {
+    "ParameterKey": "HealthCheckPath",
+    "ParameterValue": "/sla-calculator-service/actuator/health"
+  },
+  {
+    "ParameterKey": "MinContainers",
+    "ParameterValue": "1"
+  },
+  {
+    "ParameterKey": "MaxContainers",
+    "ParameterValue": "1"
+  },
+  {
+    "ParameterKey": "AutoScalingTargetValue",
+    "ParameterValue": "1"
+  }
+]
