@@ -89,7 +89,7 @@ function main() {
   local TASK_DEF_ARN
 
   # list running task
-  TASK_ARN="$(aws ecs list-tasks --cluster "$CLUSTER" --desired-status RUNNING --family "$TASK" | jq -r .taskArns[0])"
+  TASK_ARN="$(aws ecs list-tasks --cluster "$CLUSTER" --desired-status RUNNING --family "$TASK" --region us-east-2 | jq -r .taskArns[0])"
   TASK_ID="${TASK_ARN#*:task/}"
 
   # stop running task
@@ -99,7 +99,7 @@ function main() {
   fi
 
   # list active task definition
-  ACTIVE_TASK_DEF="$(aws ecs list-task-definitions --family-prefix "$TASK" --status ACTIVE | jq -r .taskDefinitionArns[0])"
+  ACTIVE_TASK_DEF="$(aws ecs list-task-definitions --family-prefix "$TASK" --status ACTIVE --region us-east-2 | jq -r .taskDefinitionArns[0])"
 
   # derigister task definition
   if [ -n "$ACTIVE_TASK_DEF" ]; then
