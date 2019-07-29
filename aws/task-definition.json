@@ -1,0 +1,19 @@
+{
+    "family": "sla-calculator",
+    "containerDefinitions": [
+        {
+            "image": "%ACCOUNT%.dkr.ecr.%REGION%.amazonaws.com/%REPO%:%BUILD_TAG%",
+            "name": "sla-calculator",
+            "essential": true,
+            "cpu": 0,
+            "memoryReservation": 300,
+            "portMappings": [
+                {
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp"
+                }
+            ]
+        }
+    ]
+}
