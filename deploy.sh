@@ -95,7 +95,7 @@ function main() {
   # stop running task
   if [ -n "$TASK_ID" ] && [ "$TASK_ID" != "null" ]; then
     printf "INFO: Stop Task %s\n" "$TASK_ID"
-    aws ecs stop-task --cluster "$CLUSTER" --task "$TASK_ID"
+    # aws ecs stop-task --cluster "$CLUSTER" --task "$TASK_ID"
   fi
 
   # list active task definition
@@ -104,7 +104,7 @@ function main() {
   # derigister task definition
   if [ -n "$ACTIVE_TASK_DEF" ]; then
     printf "INFO: Deregister Task Definition %s\n" "$ACTIVE_TASK_DEF"
-    aws ecs deregister-task-definition --task-definition "$ACTIVE_TASK_DEF"
+    # aws ecs deregister-task-definition --task-definition "$ACTIVE_TASK_DEF"
   fi
 
   # read task definition template
@@ -118,7 +118,7 @@ function main() {
   TASK_DEF_ARN="$(aws ecs register-task-definition --cli-input-json file://ecs_task_definition.json | jq -r .taskDefinition.taskDefinitionArn)"
 
   # run task by task definition
-  aws ecs run-task --task-definition "$TASK_DEF_ARN" --cluster "$CLUSTER"
+  # aws ecs run-task --task-definition "$TASK_DEF_ARN" --cluster "$CLUSTER"
 }
 
 main
