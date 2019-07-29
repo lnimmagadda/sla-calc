@@ -10,7 +10,9 @@ pipeline {
   }
   stages {
     stage('SCM Checkout'){
- 	   git 'https://github.com/lnimmagadda/sla-calc'
+      steps {
+ 	      git 'https://github.com/lnimmagadda/sla-calc'
+      }
  	  }
     stage('DeployStage') {
       steps {
