@@ -108,7 +108,7 @@ function main() {
   fi
 
   # read task definition template
-  TASK_DEFINITION=$(cat task_definition.json)
+  TASK_DEFINITION=$(cat task-definition.json)
 
   # create new task definition file
   TASK_DEFINITION="${TASK_DEFINITION/URI/$ECR}"
