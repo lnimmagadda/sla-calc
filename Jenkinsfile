@@ -1,16 +1,19 @@
-node {
- 	stage('SCM Checkout'){
- 	 git 'https://github.com/lnimmagadda/sla-calc'
- 	}
- 	stage('Docker build') {
-		docker.build('jenkins-test')
-	}
-	stage('Docker push'){
-		sh("eval \$(aws ecr get-login --no-include-email --region us-east-2 | sed 's|https://||')")
-		docker.withRegistry('https://633377509572.dkr.ecr.us-east-2.amazonaws.com/jenkins-test') {
-		 docker.image('jenkins-test').push('latest')  
-	 	}
-	}
-	 
-  
+
+pipeline {
+  agent any
+  parameters {
+    string(name: 'REPONAME', defaultValue: 'sla-calculator', description: 'AWS ECR Repository Name')
+    string(name: 'ECR', defaultValue: '633377509572.dkr.ecr.us-east-2.amazonaws.com/sla-calculator', description: 'AWS ECR Registry URI')
+    string(name: 'REGION', defaultValue: 'us-east-2', description: 'AWS Region code')
+    string(name: 'CLUSTER', defaultValue: 'sla-calculator-cluster', description: 'AWS ECS Cluster name')
+    string(name: 'TASK', defaultValue: 'sla-calculator', description: 'AWS ECS Task name')
+  }
+  stages {
+    stage('DeployStage') {
+      steps {
+        sh "./deploy.sh -b ${env.BUILD_ID} -e ${params.ECR} -c ${params.CLUSTER} -t ${params.TASK}"
+      }
+    }
+
+  }
 }
