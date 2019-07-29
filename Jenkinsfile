@@ -9,6 +9,9 @@ pipeline {
     string(name: 'TASK', defaultValue: 'sla-calculator', description: 'AWS ECS Task name')
   }
   stages {
+    stage('SCM Checkout'){
+ 	   git 'https://github.com/lnimmagadda/sla-calc'
+ 	  }
     stage('DeployStage') {
       steps {
         sh "./deploy.sh -b ${env.BUILD_ID} -e ${params.ECR} -c ${params.CLUSTER} -t ${params.TASK}"
